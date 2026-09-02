@@ -1,28 +1,28 @@
 // Variables for position and speed of ball
-let x = 100;
-let y = 100;
-let xspeed = 2.5;
-let yspeed = 2;
+let position;
+let velocity;
 
 function setup() {
   createCanvas(640, 240);
+
+  position = createVector(100, 100);
+  velocity = createVector(2.5, 2);
 }
 
 function draw() {
   background(255);
 
   // Move the ball according to its speed.
-  x = x + xspeed;
-  y = y + yspeed;
+  position.add(velocity);
   // Check for bouncing.
-  if (x > width || x < 0) {
-    xspeed = xspeed * -1;
+  if (position.x > width || position.x < 0) {
+    velocity.x = -velocity.x;
   }
-  if (y > height || y < 0) {
-    yspeed = yspeed * -1;
+  if (position.y > height || position.y < 0) {
+    velocity.y = -velocity.y;
   }
   // Draw the ball at the position (x, y).
   stroke(0);
   fill(127);
-  circle(x, y, 48);
+  circle(position.x, position.y, 48);
 }
