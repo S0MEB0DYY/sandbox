@@ -5,7 +5,7 @@ let xspeed = 2.5;
 let yspeed = 2;
 
 function setup() {
-  createCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
+  createCanvas(2560, 1350);
 }
 
 function draw() {
