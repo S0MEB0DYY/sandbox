@@ -5,7 +5,7 @@ let xspeed = 2.5;
 let yspeed = 2;
 
 function setup() {
-  createCanvas(2560, 1350);
+  createCanvas(640, 240);
 }
 
 function draw() {
