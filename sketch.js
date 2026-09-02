@@ -3,7 +3,7 @@ let position;
 let velocity;
 
 function setup() {
-  createCanvas(640, 240);
+  createCanvas(windowWidth, windowHeight);
 
   position = createVector(100, 100);
   velocity = createVector(2.5, 2);
