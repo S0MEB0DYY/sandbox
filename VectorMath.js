@@ -62,7 +62,7 @@ class VectorMathExtension {
             VEC1: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' },
             VEC2: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
           }
-        },
+        }
       ],
       menus: {
         axisMenu: {
