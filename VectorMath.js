@@ -7,7 +7,7 @@ class VectorMathExtension {
         {
           opcode: 'createVector',
           blockType: Scratch.BlockType.REPORTER,
-          text: 'new vector x: [X] y: [Y] z: [Z]',
+          text: 'vector x: [X] y: [Y] z: [Z]',
           arguments: {
             X: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
             Y: { type: Scratch.ArgumentType.NUMBER, defaultValue: 0 },
@@ -49,10 +49,18 @@ class VectorMathExtension {
         {
           opcode: 'getMagnitude',
           blockType: Scratch.BlockType.REPORTER,
-          text: 'magnitude of [VEC]',
+          text: '||[VEC]||',
           arguments: {
             VEC: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
           }
+        },
+        {
+          opcode: 'dotVector',
+          blockType: Scratch.BlockType.REPORTER,
+          text: '[VEC1] • [VEC2]',
+          arguments: {
+            VEC1: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' },
+            VEC2: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
         }
       ],
       menus: {
@@ -88,20 +96,25 @@ class VectorMathExtension {
   }
 
   addVectors(args) {
-    const v1 = this._parseVector(args.VEC1);
-    const v2 = this._parseVector(args.VEC2);
-    return this._formatVector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+    const v = this._parseVector(args.VEC1);
+    const u = this._parseVector(args.VEC2);
+    return this._formatVector(v.x + u.x, v.y + u.y, v.z + u.z);
   }
 
   scaleVector(args) {
     const v = this._parseVector(args.VEC1);
-    const s = this._parseVector(args.VEC2);
-    return this._formatVector(v.x * s.x, v.y * s.y, v.z * s.z);
+    const u = this._parseVector(args.VEC2);
+    return this._formatVector(v.x * u.x, v.y * u.y, v.z * u.z);
   }
 
   getMagnitude(args) {
     const v = this._parseVector(args.VEC);
     return Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+  }
+  dotVector(args) {
+    const v = this._parseVector(args.VEC1);
+    const u = this._parseVector(args.VEC2);
+    return v.x * u.x + v.y * u.y + v.z * u.z;
   }
 }
 
