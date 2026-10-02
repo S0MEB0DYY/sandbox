@@ -159,8 +159,10 @@ class VectorMathExtension {
   
   normVector(args) {
     const v = this._parseVector(args.VEC);
-    const vm = this.getMagnitude(args);
-    if vm === 0 return '0,0,0';
+    const vm = Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+    if vm === 0 {
+      return this._formatVector(0, 0, 0);
+    }
     return this._formatVector(v.x / vm, v.y / vm, v.z / vm);
   }
 }
