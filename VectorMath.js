@@ -112,6 +112,7 @@ class VectorMathExtension {
     const v = this._parseVector(args.VEC);
     return Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
   }
+
   dotVector(args) {
     const v = this._parseVector(args.VEC1);
     const u = this._parseVector(args.VEC2);
