@@ -62,6 +62,14 @@ class VectorMathExtension {
             VEC1: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' },
             VEC2: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
           }
+        },
+        {
+          opcode: 'normVector',
+          blockType: Scratch.BlockType.REPORTER,
+          text: '[VEC] normalized',
+          arguments: {
+            VEC: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
+          }
         }
       ],
       menus: {
@@ -117,6 +125,10 @@ class VectorMathExtension {
     const v = this._parseVector(args.VEC1);
     const u = this._parseVector(args.VEC2);
     return v.x * u.x + v.y * u.y + v.z * u.z;
+  }
+  normVector(args) {
+    const v = this._parseVector(args.VEC);
+    return v
   }
 }
 
