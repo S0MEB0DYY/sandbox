@@ -38,9 +38,36 @@ class VectorMathExtension {
           }
         },
         {
-          opcode: 'scaleVector',
+          opcode: 'subVector',
+          blockType: Scratch.BlockType.REPORTER,
+          text: '[VEC1] - [VEC2]',
+          arguments: {
+            VEC1: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' },
+            VEC2: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
+          }
+        },
+        {
+          opcode: 'mulVector',
           blockType: Scratch.BlockType.REPORTER,
           text: '[VEC1] × [VEC2]',
+          arguments: {
+            VEC1: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' },
+            VEC2: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
+          }
+        },
+        {
+          opcode: 'divVector',
+          blockType: Scratch.BlockType.REPORTER,
+          text: '[VEC1] ÷ [VEC2]',
+          arguments: {
+            VEC1: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' },
+            VEC2: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
+          }
+        },
+        {
+          opcode: 'dotVector',
+          blockType: Scratch.BlockType.REPORTER,
+          text: '[VEC1] • [VEC2]',
           arguments: {
             VEC1: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' },
             VEC2: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
@@ -52,15 +79,6 @@ class VectorMathExtension {
           text: '||[VEC]||',
           arguments: {
             VEC: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
-          }
-        },
-        {
-          opcode: 'dotVector',
-          blockType: Scratch.BlockType.REPORTER,
-          text: '[VEC1] • [VEC2]',
-          arguments: {
-            VEC1: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' },
-            VEC2: { type: Scratch.ArgumentType.STRING, defaultValue: '0,0,0' }
           }
         },
         {
@@ -110,10 +128,22 @@ class VectorMathExtension {
     return this._formatVector(v.x + u.x, v.y + u.y, v.z + u.z);
   }
 
-  scaleVector(args) {
+  subVector(args) {
+    const v = this._parseVector(args.VEC1);
+    const u = this._parseVector(args.VEC2);
+    return this._formatVector(v.x - u.x, v.y - u.y, v.z - u.z);
+  }
+
+  mulVector(args) {
     const v = this._parseVector(args.VEC1);
     const u = this._parseVector(args.VEC2);
     return this._formatVector(v.x * u.x, v.y * u.y, v.z * u.z);
+  }
+
+  divVector(args) {
+    const v = this._parseVector(args.VEC1);
+    const u = this._parseVector(args.VEC2);
+    return this._formatVector(v.x / u.x, v.y / u.y, v.z / u.z);
   }
 
   getMagnitude(args) {
@@ -126,9 +156,11 @@ class VectorMathExtension {
     const u = this._parseVector(args.VEC2);
     return v.x * u.x + v.y * u.y + v.z * u.z;
   }
+  
   normVector(args) {
     const v = this._parseVector(args.VEC);
-    return v
+    const vm = this.getMagnitude(v);
+    return this._formatVector(v.x / vm, v.y / vm, v.z / vm);
   }
 }
 
