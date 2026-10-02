@@ -159,7 +159,7 @@ class VectorMathExtension {
   
   normVector(args) {
     const v = this._parseVector(args.VEC);
-    const vm = this.getMagnitude(v);
+    const vm = this.getMagnitude(args);
     return this._formatVector(v.x / vm, v.y / vm, v.z / vm);
   }
 }
